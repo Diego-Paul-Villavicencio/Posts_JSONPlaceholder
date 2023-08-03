@@ -1,0 +1,22 @@
+function displayPosts() {
+    const xhr = new XMLHttpRequest();
+    const url = 'https://jsonplaceholder.typicode.com/posts';
+  
+    xhr.open('GET', url, true);
+    xhr.send();
+  
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        const posts = JSON.parse(xhr.responseText);
+  
+        const postList = document.getElementById('postList');
+        posts.forEach(post => {
+          const listItem = document.createElement('li');
+          listItem.textContent = post.title;
+          postList.appendChild(listItem);
+        });
+      }
+    };
+  }
+  
+  displayPosts();
